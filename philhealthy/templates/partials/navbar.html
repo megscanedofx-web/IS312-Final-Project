@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="container">
+    <a href="{{ url_for('homepage') }}" class="navbar-brand">
+      <i class="fas fa-pills"></i> Phil<span>Healthy</span>
+    </a>
+    <button class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('homepage') }}" class="{{ 'active' if request.endpoint == 'homepage' }}">Home</a></li>
+      <li><a href="{{ url_for('products_page') }}" class="{{ 'active' if request.endpoint == 'products_page' }}">Products</a></li>
+      <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.endpoint == 'about' }}">About Us</a></li>
+      <li><a href="{{ url_for('contact') }}" class="{{ 'active' if request.endpoint == 'contact' }}">Contact</a></li>
+      {% if session.get('user') %}
+        <li><a href="{{ url_for('admin_dashboard') if session.get('role')=='admin' else url_for('staff_dashboard') }}" class="btn btn-primary btn-sm">Dashboard</a></li>
+      {% else %}
+        <li><a href="{{ url_for('role_select') }}" class="btn btn-primary btn-sm">Log In</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

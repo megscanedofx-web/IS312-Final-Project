@@ -1,0 +1,26 @@
+{% extends 'partials/base.html' %}
+{% block title %}Log In - PhilHealthy{% endblock %}
+{% block body %}
+<div class="auth-page">
+  <div style="text-align:center;width:100%;max-width:600px;">
+    <a href="{{ url_for('homepage') }}" class="navbar-brand" style="justify-content:center;font-size:1.5rem;margin-bottom:2rem;display:flex;">
+      <i class="fas fa-pills"></i> Phil<span>Healthy</span>
+    </a>
+    <h2 style="margin-bottom:0.5rem;">Welcome Back</h2>
+    <p style="color:var(--gray-500);margin-bottom:2rem;">Select your role to continue</p>
+    <div class="role-cards">
+      <a href="{{ url_for('admin_login') }}" class="role-card">
+        <div class="icon">🛡️</div>
+        <h3>Admin</h3>
+        <p>System management, approvals, and full oversight</p>
+      </a>
+      <a href="{{ url_for('staff_login') }}" class="role-card">
+        <div class="icon">👤</div>
+        <h3>Staff</h3>
+        <p>Daily pharmacy operations and sales</p>
+      </a>
+    </div>
+    <p class="auth-footer">Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a></p>
+  </div>
+</div>
+{% endblock %}

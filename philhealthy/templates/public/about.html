@@ -1,0 +1,42 @@
+{% extends 'partials/base.html' %}
+{% block title %}About Us - PhilHealthy{% endblock %}
+{% block body %}
+{% include 'partials/navbar.html' %}
+
+<section class="hero" style="padding:3rem 0;">
+  <div class="container"><div class="hero-content">
+    <h1>About PhilHealthy</h1>
+    <p>Innovating pharmacy business processes with modern technology and a passion for better healthcare.</p>
+  </div></div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+      <div>
+        <h2 class="section-title">Our Mission</h2>
+        <p style="color:var(--gray-600);margin-bottom:1.5rem;">PhilHealthy was founded with a simple goal: to modernize pharmacy operations and empower healthcare businesses with smart, intuitive tools. We believe technology should simplify — not complicate — the way pharmacies work.</p>
+        <h3 style="margin-bottom:0.5rem;">Our Values</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;">
+          <li style="display:flex;align-items:center;gap:0.75rem;"><span style="width:32px;height:32px;background:var(--teal-100);color:var(--teal-600);border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="fas fa-heart"></i></span> Patient-Centered Care</li>
+          <li style="display:flex;align-items:center;gap:0.75rem;"><span style="width:32px;height:32px;background:var(--teal-100);color:var(--teal-600);border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="fas fa-lightbulb"></i></span> Innovation & Efficiency</li>
+          <li style="display:flex;align-items:center;gap:0.75rem;"><span style="width:32px;height:32px;background:var(--teal-100);color:var(--teal-600);border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="fas fa-lock"></i></span> Security & Compliance</li>
+          <li style="display:flex;align-items:center;gap:0.75rem;"><span style="width:32px;height:32px;background:var(--teal-100);color:var(--teal-600);border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="fas fa-handshake"></i></span> Trust & Transparency</li>
+        </ul>
+      </div>
+      <div class="card" style="text-align:center;padding:3rem;">
+        <i class="fas fa-pills" style="font-size:4rem;color:var(--teal-500);margin-bottom:1rem;"></i>
+        <h3>Est. 2026</h3>
+        <p style="color:var(--gray-500);">Serving pharmacies across the Philippines with cutting-edge management solutions.</p>
+        <div style="display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;">
+          <div><h4 style="color:var(--teal-600);font-size:1.5rem;">500+</h4><p class="text-sm text-muted">Products</p></div>
+          <div><h4 style="color:var(--teal-600);font-size:1.5rem;">50+</h4><p class="text-sm text-muted">Pharmacies</p></div>
+          <div><h4 style="color:var(--teal-600);font-size:1.5rem;">24/7</h4><p class="text-sm text-muted">Support</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/footer.html' %}
+{% endblock %}

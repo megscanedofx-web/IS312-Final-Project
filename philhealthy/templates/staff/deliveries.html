@@ -1,0 +1,27 @@
+{% extends 'partials/dashboard_base.html' %}
+{% block page_title %}Deliveries{% endblock %}
+{% block content %}
+<p class="text-muted mb-4">Track and manage supplier deliveries</p>
+<div class="card">
+  <div class="table-wrapper">
+    <table>
+      <thead><tr><th>ID</th><th>Supplier</th><th>Items</th><th>Date</th><th>Status</th><th>Approved</th></tr></thead>
+      <tbody>
+        {% for d in deliveries %}
+        <tr>
+          <td>{{ d.id }}</td>
+          <td><strong>{{ d.supplier }}</strong></td>
+          <td>{{ d.items }}</td>
+          <td>{{ d.date }}</td>
+          <td><span class="badge {{ 'badge-success' if d.status=='Delivered' else ('badge-info' if d.status=='In Transit' else ('badge-teal' if d.status=='Approved' else 'badge-warning')) }}">{{ d.status }}</span></td>
+          <td>
+            {% if d.approved %}<span class="badge badge-success">Yes</span>
+            {% else %}<span class="badge badge-warning">Pending</span>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

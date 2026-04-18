@@ -1,0 +1,64 @@
+{% extends 'partials/dashboard_base.html' %}
+{% block page_title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="grid grid-4 mb-6">
+  <div class="stat-card"><div class="stat-icon teal"><i class="fas fa-users"></i></div><div class="stat-info"><h3>{{ stats.total_users }}</h3><p>Total Users</p></div></div>
+  <div class="stat-card"><div class="stat-icon green"><i class="fas fa-peso-sign"></i></div><div class="stat-info"><h3>₱{{ "%.2f"|format(stats.total_sales) }}</h3><p>Total Sales</p></div></div>
+  <div class="stat-card"><div class="stat-icon blue"><i class="fas fa-pills"></i></div><div class="stat-info"><h3>{{ stats.total_products }}</h3><p>Products</p></div></div>
+  <div class="stat-card"><div class="stat-icon yellow"><i class="fas fa-clock"></i></div><div class="stat-info"><h3>{{ stats.pending_approvals }}</h3><p>Pending Approvals</p></div></div>
+</div>
+
+<div class="grid grid-2 mb-6">
+  <div class="stat-card"><div class="stat-icon red"><i class="fas fa-box-open"></i></div><div class="stat-info"><h3>{{ stats.out_of_stock }}</h3><p>Out of Stock Items</p></div></div>
+  <div class="stat-card"><div class="stat-icon yellow"><i class="fas fa-exclamation-triangle"></i></div><div class="stat-info"><h3>{{ stats.low_stock }}</h3><p>Low Stock Items</p></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;" class="mb-6">
+  <div class="card">
+    <div class="card-header"><h3 class="card-title">Sales Overview</h3></div>
+    <div class="simple-chart" style="padding-bottom:2rem;">
+      <div class="chart-bar" style="height:60%;"><span class="chart-bar-value">₱120</span><span class="chart-bar-label">Mon</span></div>
+      <div class="chart-bar" style="height:80%;"><span class="chart-bar-value">₱185</span><span class="chart-bar-label">Tue</span></div>
+      <div class="chart-bar" style="height:45%;"><span class="chart-bar-value">₱92</span><span class="chart-bar-label">Wed</span></div>
+      <div class="chart-bar" style="height:90%;"><span class="chart-bar-value">₱210</span><span class="chart-bar-label">Thu</span></div>
+      <div class="chart-bar" style="height:70%;"><span class="chart-bar-value">₱155</span><span class="chart-bar-label">Fri</span></div>
+      <div class="chart-bar" style="height:100%;"><span class="chart-bar-value">₱248</span><span class="chart-bar-label">Sat</span></div>
+      <div class="chart-bar" style="height:35%;"><span class="chart-bar-value">₱75</span><span class="chart-bar-label">Sun</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3 class="card-title">Pending Deliveries</h3></div>
+    {% for d in deliveries %}
+      {% if not d.approved %}
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;border-bottom:1px solid var(--gray-100);">
+        <div><strong style="font-size:0.85rem;">{{ d.supplier }}</strong><br><span class="text-xs text-muted">{{ d.items }}</span></div>
+        <button class="btn btn-primary btn-sm" onclick="approveDelivery({{ d.id }})">Approve</button>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header flex justify-between items-center">
+    <h3 class="card-title">Recent Transactions</h3>
+    <a href="{{ url_for('admin_transactions') }}" class="btn btn-secondary btn-sm">View All</a>
+  </div>
+  <div class="table-wrapper">
+    <table>
+      <thead><tr><th>ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr></thead>
+      <tbody>
+        {% for t in transactions %}
+        <tr>
+          <td><strong>{{ t.id }}</strong></td>
+          <td>{{ t.customer }}</td>
+          <td>{{ t.items }}</td>
+          <td>₱{{ "%.2f"|format(t.total) }}</td>
+          <td><span class="badge {{ 'badge-success' if t.status=='Completed' else 'badge-warning' }}">{{ t.status }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

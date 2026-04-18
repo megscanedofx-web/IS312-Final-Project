@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+{% block title %}Products - PhilHealthy{% endblock %}
+{% block body %}
+{% include 'partials/navbar.html' %}
+
+<section class="hero" style="padding:3rem 0;">
+  <div class="container"><div class="hero-content">
+    <h1>Our Products</h1>
+    <p>Browse our wide selection of quality medicines and healthcare products.</p>
+  </div></div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-4">
+      {% for p in products %}
+      <div class="product-card">
+        <div style="height:120px;background:linear-gradient(135deg,var(--teal-50),var(--teal-100));display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-pills" style="font-size:2.5rem;color:var(--teal-400);"></i>
+        </div>
+        <div class="product-card-body">
+          <span class="category">{{ p.category }}</span>
+          <h3>{{ p.name }}</h3>
+          <p class="price">₱{{ "%.2f"|format(p.price) }}</p>
+          <p class="stock">
+            {% if p.stock > 20 %}<span class="badge badge-success">In Stock</span>
+            {% elif p.stock > 0 %}<span class="badge badge-warning">Low Stock ({{ p.stock }})</span>
+            {% else %}<span class="badge badge-danger">Out of Stock</span>{% endif %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include 'partials/footer.html' %}
+{% endblock %}

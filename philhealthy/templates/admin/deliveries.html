@@ -1,0 +1,30 @@
+{% extends 'partials/dashboard_base.html' %}
+{% block page_title %}Delivery Management{% endblock %}
+{% block content %}
+<p class="text-muted mb-4">Manage and approve supplier deliveries</p>
+<div class="card">
+  <div class="table-wrapper">
+    <table>
+      <thead><tr><th>ID</th><th>Supplier</th><th>Items</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>
+        {% for d in deliveries %}
+        <tr>
+          <td>{{ d.id }}</td>
+          <td><strong>{{ d.supplier }}</strong></td>
+          <td>{{ d.items }}</td>
+          <td>{{ d.date }}</td>
+          <td><span class="badge {{ 'badge-success' if d.status=='Delivered' else ('badge-info' if d.status=='In Transit' else ('badge-teal' if d.status=='Approved' else 'badge-warning')) }}">{{ d.status }}</span></td>
+          <td>
+            {% if not d.approved %}
+              <button class="btn btn-primary btn-sm" onclick="approveDelivery({{ d.id }})"><i class="fas fa-check"></i> Approve</button>
+            {% else %}
+              <span class="badge badge-success">Approved</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

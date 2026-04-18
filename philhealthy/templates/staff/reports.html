@@ -1,0 +1,42 @@
+{% extends 'partials/dashboard_base.html' %}
+{% block page_title %}Reports{% endblock %}
+{% block content %}
+<div class="grid grid-4 mb-6">
+  <div class="stat-card"><div class="stat-icon green"><i class="fas fa-peso-sign"></i></div><div class="stat-info"><h3>₱{{ "%.2f"|format(stats.total_revenue) }}</h3><p>Total Revenue</p></div></div>
+  <div class="stat-card"><div class="stat-icon blue"><i class="fas fa-receipt"></i></div><div class="stat-info"><h3>{{ stats.total_transactions }}</h3><p>Transactions</p></div></div>
+  <div class="stat-card"><div class="stat-icon teal"><i class="fas fa-pills"></i></div><div class="stat-info"><h3>{{ stats.total_products }}</h3><p>Products</p></div></div>
+  <div class="stat-card"><div class="stat-icon yellow"><i class="fas fa-exclamation-triangle"></i></div><div class="stat-info"><h3>{{ stats.low_stock_items }}</h3><p>Low Stock</p></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+  <div class="card">
+    <div class="card-header"><h3 class="card-title">Weekly Sales Chart</h3></div>
+    <div class="simple-chart" style="padding-bottom:2rem;">
+      <div class="chart-bar" style="height:60%;"><span class="chart-bar-value">₱120</span><span class="chart-bar-label">Mon</span></div>
+      <div class="chart-bar" style="height:80%;"><span class="chart-bar-value">₱185</span><span class="chart-bar-label">Tue</span></div>
+      <div class="chart-bar" style="height:45%;"><span class="chart-bar-value">₱92</span><span class="chart-bar-label">Wed</span></div>
+      <div class="chart-bar" style="height:90%;"><span class="chart-bar-value">₱210</span><span class="chart-bar-label">Thu</span></div>
+      <div class="chart-bar" style="height:70%;"><span class="chart-bar-value">₱155</span><span class="chart-bar-label">Fri</span></div>
+      <div class="chart-bar" style="height:100%;"><span class="chart-bar-value">₱248</span><span class="chart-bar-label">Sat</span></div>
+      <div class="chart-bar" style="height:35%;"><span class="chart-bar-value">₱75</span><span class="chart-bar-label">Sun</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3 class="card-title">Inventory Summary</h3></div>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>Product</th><th>Stock</th><th>Status</th></tr></thead>
+        <tbody>
+          {% for p in products %}
+          <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.stock }}</td>
+            <td>{% if p.stock == 0 %}<span class="badge badge-danger">Out</span>{% elif p.stock <= 20 %}<span class="badge badge-warning">Low</span>{% else %}<span class="badge badge-success">OK</span>{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

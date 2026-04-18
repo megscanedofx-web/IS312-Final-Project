@@ -1,0 +1,32 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="brand"><i class="fas fa-pills"></i> Phil<span>Healthy</span></div>
+    <span class="role-badge">{{ session.get('role', 'staff') }}</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Main</div>
+    {% if session.get('role') == 'admin' %}
+      <a href="{{ url_for('admin_dashboard') }}" class="{{ 'active' if request.endpoint == 'admin_dashboard' }}"><i class="fas fa-th-large"></i> Dashboard</a>
+      <a href="{{ url_for('admin_users') }}" class="{{ 'active' if request.endpoint == 'admin_users' }}"><i class="fas fa-users"></i> Users</a>
+    {% else %}
+      <a href="{{ url_for('staff_dashboard') }}" class="{{ 'active' if request.endpoint == 'staff_dashboard' }}"><i class="fas fa-th-large"></i> Dashboard</a>
+    {% endif %}
+
+    <div class="nav-section">Operations</div>
+    {% set inv_url = url_for('admin_inventory') if session.get('role')=='admin' else url_for('inventory') %}
+    {% set del_url = url_for('admin_deliveries') if session.get('role')=='admin' else url_for('deliveries') %}
+    {% set sal_url = url_for('admin_sales') if session.get('role')=='admin' else url_for('sales') %}
+    {% set txn_url = url_for('admin_transactions') if session.get('role')=='admin' else url_for('transactions') %}
+    {% set rep_url = url_for('admin_reports') if session.get('role')=='admin' else url_for('reports') %}
+
+    <a href="{{ inv_url }}" class="{{ 'active' if 'inventory' in request.endpoint }}"><i class="fas fa-boxes-stacked"></i> Inventory</a>
+    <a href="{{ del_url }}" class="{{ 'active' if 'deliveries' in request.endpoint }}"><i class="fas fa-truck"></i> Deliveries</a>
+    <a href="{{ sal_url }}" class="{{ 'active' if request.endpoint in ['sales','admin_sales'] }}"><i class="fas fa-cash-register"></i> Sales</a>
+    <a href="{{ txn_url }}" class="{{ 'active' if 'transactions' in request.endpoint }}"><i class="fas fa-receipt"></i> Transactions</a>
+    <a href="{{ rep_url }}" class="{{ 'active' if 'reports' in request.endpoint }}"><i class="fas fa-chart-pie"></i> Reports</a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="{{ url_for('homepage') }}"><i class="fas fa-globe"></i> View Site</a>
+    <a href="{{ url_for('logout') }}" style="margin-top:0.5rem;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+</aside>

@@ -1,0 +1,23 @@
+<!-- AI Chatbot Widget -->
+<button class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Chat">
+  <i class="fas fa-comment-dots"></i>
+</button>
+
+<div class="chatbot-window" id="chatbotWindow">
+  <div class="chatbot-header">
+    <div>
+      <h4><i class="fas fa-robot"></i> PhilHealthy Assistant</h4>
+      <span style="font-size:0.75rem;opacity:0.8;">Ask me anything!</span>
+    </div>
+    <button class="close-chat" onclick="closeChatbot()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="chatbot-messages" id="chatMessages">
+    <div class="chat-message bot">
+      Hello! 👋 I'm the PhilHealthy assistant. How can I help you today? Ask me about our products, store hours, delivery, or anything else!
+    </div>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
+    <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>

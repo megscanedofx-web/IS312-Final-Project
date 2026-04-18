@@ -1,0 +1,24 @@
+{% extends 'partials/base.html' %}
+{% block title %}Staff Login - PhilHealthy{% endblock %}
+{% block body %}
+<div class="auth-page">
+  <div class="auth-card">
+    <div style="text-align:center;margin-bottom:1.5rem;">
+      <a href="{{ url_for('homepage') }}" class="navbar-brand" style="justify-content:center;margin-bottom:0.5rem;display:flex;"><i class="fas fa-pills"></i> Phil<span>Healthy</span></a>
+      <span class="badge badge-info">Staff Portal</span>
+    </div>
+    <h2>Staff Login</h2>
+    <p class="subtitle">Access the staff operations panel</p>
+    <form method="POST">
+      <div class="form-group"><label>Email Address</label><input type="email" name="email" class="form-control" placeholder="staff@philhealthy.com" required></div>
+      <div class="form-group"><label>Password</label><input type="password" name="password" class="form-control" placeholder="••••••••" required></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+        <label class="form-check"><input type="checkbox" name="remember"> Remember me</label>
+        <a href="#" class="text-sm">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In <i class="fas fa-arrow-right"></i></button>
+    </form>
+    <p class="auth-footer"><a href="{{ url_for('role_select') }}"><i class="fas fa-arrow-left"></i> Back to role selection</a></p>
+  </div>
+</div>
+{% endblock %}

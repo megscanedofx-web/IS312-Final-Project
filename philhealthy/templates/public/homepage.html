@@ -1,0 +1,65 @@
+{% extends 'partials/base.html' %}
+{% block title %}PhilHealthy - Pharmacy Management & Innovation{% endblock %}
+
+{% block body %}
+{% include 'partials/navbar.html' %}
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Pharmacy Business Process Management & Innovation</h1>
+      <p>Streamline your pharmacy operations with PhilHealthy — a modern, all-in-one platform for inventory management, sales tracking, delivery coordination, and powerful analytics.</p>
+      <a href="{{ url_for('role_select') }}" class="btn btn-primary btn-lg">Get Started <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container text-center">
+    <h2 class="section-title">Why Choose PhilHealthy?</h2>
+    <p class="section-subtitle">Everything your pharmacy needs in one powerful platform</p>
+    <div class="grid grid-3">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-boxes-stacked"></i></div>
+        <h3>Inventory Management</h3>
+        <p>Track stock levels, near-expiry items, and out-of-stock products in real-time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Sales Analytics</h3>
+        <p>Monitor daily sales, revenue trends, and frequently purchased medicines.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-truck"></i></div>
+        <h3>Delivery Tracking</h3>
+        <p>Manage supplier deliveries, track statuses, and approve incoming stock.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+        <h3>Role-Based Access</h3>
+        <p>Separate admin and staff panels with appropriate access controls.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-file-lines"></i></div>
+        <h3>Reports & Insights</h3>
+        <p>Generate comprehensive reports for informed business decisions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+        <h3>AI Chatbot</h3>
+        <p>Instant customer support with our intelligent chatbot assistant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:linear-gradient(135deg, var(--teal-600), var(--teal-800));color:var(--white);">
+  <div class="container text-center">
+    <h2 style="color:var(--white);font-size:2rem;margin-bottom:0.5rem;">Ready to Transform Your Pharmacy?</h2>
+    <p style="opacity:0.9;margin-bottom:2rem;">Join PhilHealthy today and experience modern pharmacy management.</p>
+    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg" style="background:var(--white);color:var(--teal-700);">Create Account <i class="fas fa-user-plus"></i></a>
+  </div>
+</section>
+
+{% include 'partials/footer.html' %}
+{% endblock %}

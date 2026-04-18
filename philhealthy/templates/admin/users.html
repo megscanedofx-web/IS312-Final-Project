@@ -1,0 +1,25 @@
+{% extends 'partials/dashboard_base.html' %}
+{% block page_title %}User Management{% endblock %}
+{% block content %}
+<p class="text-muted mb-4">Manage system users and access</p>
+<div class="card">
+  <div class="table-wrapper">
+    <table>
+      <thead><tr><th>Email</th><th>Name</th><th>Role</th><th>Actions</th></tr></thead>
+      <tbody>
+        {% for email, user in users.items() %}
+        <tr>
+          <td><strong>{{ email }}</strong></td>
+          <td>{{ user.name }}</td>
+          <td><span class="badge {{ 'badge-teal' if user.role=='admin' else 'badge-info' }}">{{ user.role|capitalize }}</span></td>
+          <td>
+            <button class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Edit</button>
+            <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

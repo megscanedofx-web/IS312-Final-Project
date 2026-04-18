@@ -1,0 +1,24 @@
+{% extends 'partials/dashboard_base.html' %}
+{% block page_title %}Transactions{% endblock %}
+{% block content %}
+<p class="text-muted mb-4">View all pharmacy transactions</p>
+<div class="card">
+  <div class="table-wrapper">
+    <table>
+      <thead><tr><th>Transaction ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Date</th><th>Status</th></tr></thead>
+      <tbody>
+        {% for t in transactions %}
+        <tr>
+          <td><strong>{{ t.id }}</strong></td>
+          <td>{{ t.customer }}</td>
+          <td>{{ t.items }}</td>
+          <td>₱{{ "%.2f"|format(t.total) }}</td>
+          <td>{{ t.date }}</td>
+          <td><span class="badge {{ 'badge-success' if t.status=='Completed' else 'badge-warning' }}">{{ t.status }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
